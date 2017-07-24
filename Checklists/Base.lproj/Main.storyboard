@@ -56,7 +56,7 @@
         <!--Add Item-->
         <scene sceneID="y07-nZ-O5p">
             <objects>
-                <tableViewController id="5Hd-6c-3An" sceneMemberID="viewController">
+                <tableViewController id="5Hd-6c-3An" customClass="AddItemViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="iFF-cC-YMg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -77,8 +77,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Item" id="M1O-73-bU9">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Wrd-Ef-kKp"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="120-lb-ygm"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Wrd-Ef-kKp">
+                            <connections>
+                                <action selector="cancel" destination="5Hd-6c-3An" id="Jvd-WG-iDK"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="120-lb-ygm">
+                            <connections>
+                                <action selector="Done" destination="5Hd-6c-3An" id="ldb-Bc-l5T"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EdP-kc-GL0" userLabel="First Responder" sceneMemberID="firstResponder"/>
