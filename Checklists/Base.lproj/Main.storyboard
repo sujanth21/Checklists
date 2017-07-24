@@ -79,6 +79,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
                                                         <action selector="Done" destination="5Hd-6c-3An" eventType="editingDidEndOnExit" id="asw-jU-r2c"/>
+                                                        <outlet property="delegate" destination="5Hd-6c-3An" id="rJU-xn-QPO"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -105,12 +106,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneBarButton" destination="120-lb-ygm" id="yrq-0k-aZe"/>
                         <outlet property="textField" destination="9mn-3Q-FdD" id="p8g-tg-FBn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EdP-kc-GL0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2644" y="133.5832083958021"/>
+            <point key="canvasLocation" x="2569" y="91"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fTM-v6-wET">
