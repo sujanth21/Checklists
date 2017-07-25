@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChecklistViewController: UITableViewController {
+class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
     
     var items: [ChecklistItem]
     
@@ -132,6 +132,27 @@ class ChecklistViewController: UITableViewController {
         label.text = item.text
     }
     
+    
+    //Delegate methods
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "AddItem" {
+            let navigationController = segue.destination as! UINavigationController
+            
+            let controller = navigationController.topViewController as! AddItemViewController
+            
+            controller.delegate = self
+        }
+    }
     
 }
 
