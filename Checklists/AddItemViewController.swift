@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+protocol AddItemViewControllerDelegate: class {
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController)
+    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
+}
+
 class AddItemViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var textField: UITextField!
@@ -19,15 +24,19 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         textField.becomeFirstResponder()
     }
     
+    weak var delegate: AddItemViewControllerDelegate?
+    
     @IBAction func cancel() {
-        dismiss(animated: true, completion: nil)
+        delegate?.addItemViewControllerDidCancel(self)
     }
     
     @IBAction func Done() {
         
-        print("Content of the text field: \(textField.text!)")
+        let item = ChecklistItem()
+        item.text = textField.text!
+        item.checked = false
         
-        dismiss(animated: true, completion: nil)
+        delegate?.addItemViewController(self, didFinishAdding: item)
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -39,11 +48,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         let oldText = textField.text! as NSString
         let newText = oldText.replacingCharacters(in: range, with: string) as NSString
         
-        if newText.length > 0 {
-            doneBarButton.isEnabled = true
-        } else {
-            doneBarButton.isEnabled = false
-        }
+        doneBarButton.isEnabled = (newText.length > 0)
         
         return true
     }

@@ -99,7 +99,7 @@
                                 <action selector="cancel" destination="5Hd-6c-3An" id="Jvd-WG-iDK"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="120-lb-ygm">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="120-lb-ygm">
                             <connections>
                                 <action selector="Done" destination="5Hd-6c-3An" id="ldb-Bc-l5T"/>
                             </connections>
