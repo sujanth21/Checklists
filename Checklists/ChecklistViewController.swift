@@ -103,20 +103,6 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     
 
     
-    @IBAction func addItem() {
-        
-        let newRowIndex = items.count
-        
-        let item = ChecklistItem()
-        item.text = "I am a new row"
-        item.checked = false
-        items.append(item)
-        
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
-    }
-    
     func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
       
         if item.checked {
@@ -139,6 +125,14 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     }
     
     func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+        
+        let newRowIndex = items.count
+        items.append(item)
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        
         dismiss(animated: true, completion: nil)
     }
     
