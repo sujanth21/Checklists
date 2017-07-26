@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
+class ChecklistViewController: UITableViewController, ItemDetailViewControllerDelegate {
     
     var items: [ChecklistItem]
     
@@ -51,6 +51,9 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         items.append(row6Item)
         
         super.init(coder: aDecoder)
+        
+        print("Document folder is \(documentsDirectory())")
+        print("Data file path is \(dataFilePath())")
     }
 
     override func viewDidLoad() {
@@ -122,11 +125,11 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     
     
     //Delegate methods
-    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
         dismiss(animated: true, completion: nil)
     }
     
-    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ChecklistItem) {
         
         let newRowIndex = items.count
         items.append(item)
@@ -138,7 +141,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         dismiss(animated: true, completion: nil)
     }
     
-    func addItemViewController(_ controller: AddItemViewController, didFininshEditing item: ChecklistItem) {
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFininshEditing item: ChecklistItem) {
         
         if let index = items.index(of: item) {
             let indexPath = IndexPath(row: index, section: 0)
@@ -156,14 +159,14 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         if segue.identifier == "AddItem" {
             let navigationController = segue.destination as! UINavigationController
             
-            let controller = navigationController.topViewController as! AddItemViewController
+            let controller = navigationController.topViewController as! ItemDetailViewController
             
             controller.delegate = self
         } else if segue.identifier == "EditItem" {
             
             let navigationController = segue.destination as! UINavigationController
             
-            let controller = navigationController.topViewController as! AddItemViewController
+            let controller = navigationController.topViewController as! ItemDetailViewController
             
             controller.delegate = self
             
@@ -171,6 +174,17 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
                 controller.itemToEdit = items[indexPath.row]
             }
         }
+    }
+    
+    //Accessing document directory
+    func documentsDirectory() -> URL {
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("Checklists.plist")
     }
     
 }
