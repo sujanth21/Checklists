@@ -15,42 +15,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     required init?(coder aDecoder: NSCoder) {
         items = [ChecklistItem]()
         
-        let row0Item = ChecklistItem()
-        row0Item.text = "Walk the dog"
-        row0Item.checked = false
-        items.append(row0Item)
-        
-        let row1Item = ChecklistItem()
-        row1Item.text = "Brush my teeth"
-        row1Item.checked = false
-        items.append(row1Item)
-        
-        let row2Item = ChecklistItem()
-        row2Item.text = "Learn iOS development"
-        row2Item.checked = false
-        items.append(row2Item)
-        
-        let row3Item = ChecklistItem()
-        row3Item.text = "Cricket practice"
-        row3Item.checked = false
-        items.append(row3Item)
-        
-        let row4Item = ChecklistItem()
-        row4Item.text = "Eat Ice Cream"
-        row4Item.checked = false
-        items.append(row4Item)
-        
-        let row5Item = ChecklistItem()
-        row5Item.text = "Soccur practice"
-        row5Item.checked = false
-        items.append(row5Item)
-        
-        let row6Item = ChecklistItem()
-        row6Item.text = "Watch movie"
-        row6Item.checked = false
-        items.append(row6Item)
-        
         super.init(coder: aDecoder)
+        loadChecklistItems()
         
         print("Document folder is \(documentsDirectory())")
         print("Data file path is \(dataFilePath())")
@@ -199,6 +165,20 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         archiver.encode(items, forKey: "ChecklistItems")
         archiver.finishEncoding()
         data.write(to: dataFilePath(), atomically: true)
+    }
+    
+    //Load list items
+    func loadChecklistItems() {
+        
+        let path = dataFilePath()
+        
+        if let data = try? Data(contentsOf: path) {
+            
+            let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+            items = unarchiver.decodeObject(forKey: "ChecklistItems") as! [ChecklistItem]
+            unarchiver.finishDecoding()
+            
+        }
     }
     
 }
