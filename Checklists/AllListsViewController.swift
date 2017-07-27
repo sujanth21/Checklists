@@ -9,6 +9,28 @@
 import UIKit
 
 class AllListsViewController: UITableViewController {
+    
+    var lists: [Checklist]
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        lists = [Checklist]()
+        
+        super.init(coder: aDecoder)
+        
+        var list = Checklist(name: "Birthday")
+        lists.append(list)
+        
+        list = Checklist(name: "Groceries")
+        lists.append(list)
+        
+        list = Checklist(name: "Cool Apps")
+        lists.append(list)
+        
+        list = Checklist(name: "To Do")
+        lists.append(list)
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +55,10 @@ class AllListsViewController: UITableViewController {
         let cell = makeCell(for: tableView)
         cell.textLabel!.text = "List \(indexPath.row)"
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowChecklist", sender: nil)
     }
 
     
