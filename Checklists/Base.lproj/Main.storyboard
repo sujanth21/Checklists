@@ -85,6 +85,83 @@
             </objects>
             <point key="canvasLocation" x="968.79999999999995" y="133.5832083958021"/>
         </scene>
+        <!--Add Checklist-->
+        <scene sceneID="Vc7-0f-CQi">
+            <objects>
+                <tableViewController id="Dt7-Cl-TbJ" customClass="ListDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="60t-M2-c9l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="Cql-2d-KxX">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Kfr-9V-2aT">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kfr-9V-2aT" id="JW3-Xs-OxD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the list" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nkH-Od-Ezm">
+                                                    <rect key="frame" x="8" y="8" width="359" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="done" destination="Dt7-Cl-TbJ" eventType="editingDidEndOnExit" id="Zkv-S2-qca"/>
+                                                        <outlet property="delegate" destination="Dt7-Cl-TbJ" id="lcj-gx-adD"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Dt7-Cl-TbJ" id="R1w-ky-dTD"/>
+                            <outlet property="delegate" destination="Dt7-Cl-TbJ" id="B6k-c1-XI9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Checklist" id="Tcc-qq-4xK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MCR-X3-1MW">
+                            <connections>
+                                <action selector="cancel" destination="Dt7-Cl-TbJ" id="6DS-HO-UF4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="buI-y2-pTQ">
+                            <connections>
+                                <action selector="done" destination="Dt7-Cl-TbJ" id="hNh-mu-TTV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneBarButton" destination="buI-y2-pTQ" id="fQR-nL-e30"/>
+                        <outlet property="textField" destination="nkH-Od-Ezm" id="cLK-ED-ZnY"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gX2-ZD-CMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="757.60000000000002" y="967.4662668665668"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1pb-4o-rzp">
+            <objects>
+                <navigationController id="AA9-xU-D0Z" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Kk-bb-JhG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Dt7-Cl-TbJ" kind="relationship" relationship="rootViewController" id="WM7-oT-6Af"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ccu-Dj-qmF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-196" y="968"/>
+        </scene>
         <!--Add Item-->
         <scene sceneID="y07-nZ-O5p">
             <objects>
