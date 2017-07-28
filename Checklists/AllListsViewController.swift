@@ -30,6 +30,11 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
             performSegue(withIdentifier: "ShowChecklist", sender: checklist)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -51,7 +56,16 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         cell.textLabel!.text = checklist.name
         cell.accessoryType = .detailDisclosureButton
         
-        cell.detailTextLabel!.text = "\(checklist.countUncheckedItems()) Remaining"
+        let count = checklist.countUncheckedItems()
+        if checklist.items.count == 0 {
+            cell.detailTextLabel!.text = "(No Items)"
+        } else if count == 0 {
+            cell.detailTextLabel!.text = "All Done!"
+        } else {
+            cell.detailTextLabel!.text = "\(count) Remaining"
+        }
+        
+        
         
         return cell
     }

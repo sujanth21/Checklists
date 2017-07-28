@@ -35,7 +35,6 @@ class Checklist: NSObject, NSCoding {
         for item in items where !item.checked {
             count += 1
         }
-        
         return count
     }
     
