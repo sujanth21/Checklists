@@ -15,26 +15,8 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     required init?(coder aDecoder: NSCoder) {
         
         lists = [Checklist]()
-        
         super.init(coder: aDecoder)
-        
-        var list = Checklist(name: "Birthday")
-        lists.append(list)
-        
-        list = Checklist(name: "Groceries")
-        lists.append(list)
-        
-        list = Checklist(name: "Cool Apps")
-        lists.append(list)
-        
-        list = Checklist(name: "To Do")
-        lists.append(list)
-        
-        for list in lists {
-            let item = ChecklistItem()
-            item.text = "Item for \(list.name)"
-            list.items.append(item)
-        }
+        loadChecklists()
         
     }
 
@@ -146,6 +128,35 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         controller.checklistToEdit = checklist
         
         present(navigationController, animated: true, completion: nil)
+    }
+    
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("Checklists.plist")
+    }
+    
+    func saveChecklists() {
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWith: data)
+        
+        archiver.encode(lists, forKey: "Checklists")
+        archiver.finishEncoding()
+        data.write(to: dataFilePath(), atomically: true)
+        
+    }
+    
+    func loadChecklists() {
+        let path = dataFilePath()
+        
+        if let data = try? Data(contentsOf: path) {
+            let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+            lists = unarchiver.decodeObject(forKey: "Checklists") as! [Checklist]
+            unarchiver.finishDecoding()
+        }
     }
 
 
