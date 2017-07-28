@@ -44,6 +44,13 @@ class DataModel {
     
     init() {
         loadChecklists()
+        registerDefaults()
+    }
+    
+    func registerDefaults() {
+        
+        let dictionary: [String: Any] = ["ChecklistIndex": -1]
+        UserDefaults.standard.register(defaults: dictionary)
     }
     
 }
