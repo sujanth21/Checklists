@@ -155,4 +155,10 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         tableView.insertRows(at: [indexPathDatePicker], with: .fade)
     }
     
+    @IBAction func dateChanged(_ datePicker: UIDatePicker) {
+        
+        dueDate = datePicker.date
+        updateDueDateLabel()
+    }
+    
 }
