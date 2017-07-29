@@ -152,7 +152,18 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
         datePickerVisible = true
         
         let indexPathDatePicker = IndexPath(row: 2, section: 1)
+        let indexPathDateRow = IndexPath(row: 1, section: 1)
+        
+        if let dateCell = tableView.cellForRow(at: indexPathDateRow) {
+            dateCell.detailTextLabel!.textColor = dateCell.detailTextLabel!.tintColor
+        }
+        
+        tableView.beginUpdates()
         tableView.insertRows(at: [indexPathDatePicker], with: .fade)
+        tableView.reloadRows(at: [indexPathDateRow], with: .none)
+        tableView.endUpdates()
+        
+        datePicker.setDate(dueDate, animated: false)
     }
     
     @IBAction func dateChanged(_ datePicker: UIDatePicker) {
