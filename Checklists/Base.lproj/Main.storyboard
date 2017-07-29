@@ -308,6 +308,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9AN-Ef-oRV">
                                                     <rect key="frame" x="314" y="9" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="shouldRemindToggled:" destination="5Hd-6c-3An" eventType="valueChanged" id="1Ob-Ip-MXZ"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
